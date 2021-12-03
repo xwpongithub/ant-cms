@@ -9,6 +9,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "ant-design-vue": "^3.0.0-alpha.13",
     "axios": "^0.24.0",
     "good-storage": "^1.1.1",
     "vue": "^3.2.23",
@@ -26,6 +27,7 @@
     "@vue/compiler-sfc": "^3.2.23",
     "@vue/eslint-config-standard": "^5.1.2",
     "babel-eslint": "^10.1.0",
+    "babel-plugin-import": "^1.13.3",
     "cz-customizable": "^6.3.0",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",

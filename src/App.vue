@@ -1,11 +1,22 @@
 <template>
-  <div>vue</div>
+  <div>
+    <button @click="handleClick">click</button>
+  </div>
 </template>
 
 <script>
+import { getCurrentInstance } from 'vue'
+
 export default {
   name: 'App'
 }
 </script>
 
-<style lang="scss"></style>
+<script setup>
+const ins = getCurrentInstance()
+
+const handleClick = () => {
+  const {$message} = ins.appContext.config.globalProperties
+  $message.info('hello ant-cms')
+}
+</script>
