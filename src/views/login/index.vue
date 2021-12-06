@@ -24,7 +24,7 @@
 </template>
 
 <script>
-  import {ref, getCurrentInstance} from 'vue'
+  import {ref, getCurrentInstance, inject} from 'vue'
   import {UserOutlined, LockOutlined} from '@ant-design/icons-vue'
 
   export default {
@@ -38,7 +38,7 @@
 
 <script setup>
 const instance = getCurrentInstance()
-const {$message} = instance.appContext.config.globalProperties
+const $message = inject('$message')
 
 const loginFormRef = ref(null)
 // 禁止浏览器自动填充用户名和密码
