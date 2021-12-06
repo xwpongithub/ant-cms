@@ -14,6 +14,7 @@
     "axios": "^0.24.0",
     "axios-retry": "^3.2.4",
     "good-storage": "^1.1.1",
+    "md5": "^2.3.0",
     "vue": "^3.2.23",
     "vue-axios": "^3.4.0",
     "vue-router": "^4.0.12",

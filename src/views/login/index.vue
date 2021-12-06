@@ -18,13 +18,14 @@
           </template>
         </a-input-password>
       </a-form-item>
-      <a-button type="primary" :block="true" @click="submitForm">用户登录</a-button>
+      <a-button type="primary" :block="true" @click="handleLogin" :loading="loading">用户登录</a-button>
     </a-form>
   </div>
 </template>
 
 <script>
   import {ref, getCurrentInstance, inject} from 'vue'
+  import {useStore} from 'vuex'
   import {UserOutlined, LockOutlined} from '@ant-design/icons-vue'
 
   export default {
@@ -37,7 +38,11 @@
 </script>
 
 <script setup>
+// 导入vuex
+const store = useStore()
+// 获取当前组件实例
 const instance = getCurrentInstance()
+// 全局提示框
 const $message = inject('$message')
 
 const loginFormRef = ref(null)
@@ -49,6 +54,8 @@ const loginForm = ref({
   username: 'super-admin',
   password: '123456'
 })
+// 登录加载中状态
+const loading = ref(false)
 
 const handlePasswordFocus = () => passwordReadOnlyRef.value = false
 const handlePasswordBlur = () => passwordReadOnlyRef.value = true
@@ -64,7 +71,7 @@ const validatePass = async (_rule, value) => {
   }
   return Promise.resolve()
 }
-
+// 字段验证规则
 const loginRules = {
   username: [
     { required: true, message: '请输入用户名', trigger: 'blur' }
@@ -75,13 +82,23 @@ const loginRules = {
 }
 
 // 提交登录表单
-const submitForm = () => {
+const handleLogin = () => {
+  // 进行表单校验
   loginFormRef.value
     .validate()
     .then(() => {
-
+      loading.value = true
+      store.dispatch('user/login', loginForm.value)
+      .then(data => {
+        loading.value = false
+        // 进行登录后处理
+        console.log(data)
+      })
     })
-    .catch(e => $message.error(e.message))
+    .catch(e => {
+      loading.value = false
+      $message.error(e.message)
+    })
 }
 </script>
 

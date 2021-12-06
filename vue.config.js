@@ -1,4 +1,13 @@
 module.exports = {
+  devServer: {
+    // 配置反向代理
+    proxy: {
+      '/api': {
+        target: 'https://api.imooc-admin.lgdsunday.club/',
+        changeOrigin: true
+      }
+    }
+  }
   // css: {
   //   loaderOptions: {
   //     sass: {
