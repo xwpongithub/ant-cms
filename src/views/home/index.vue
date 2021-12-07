@@ -29,9 +29,7 @@
                 <router-link to="/">
                   <a-menu-item>切换部门</a-menu-item>
                 </router-link>
-                <router-link to="/">
-                  <a-menu-item>退出登录</a-menu-item>
-                </router-link>
+                <a-menu-item @click="logout">退出登录</a-menu-item>
               </a-menu>
             </template>
           </a-dropdown>
@@ -46,6 +44,7 @@
 </template>
 
 <script>
+  import {useStore} from 'vuex'
   import Layout from '@/components/base/main-layout'
 
   export default {
@@ -54,6 +53,12 @@
       Layout
     }
   }
+</script>
+
+<script setup>
+const store = useStore()
+
+const logout = () => store.dispatch('user/logout')
 </script>
 
 <style lang="scss" scoped>

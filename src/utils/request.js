@@ -1,8 +1,11 @@
 import {message} from 'ant-design-vue'
 import axios from 'axios'
 import axiosRetry from 'axios-retry'
+import storage from 'good-storage'
+
 import store from '@/store'
 import {baseURL} from '@/config'
+import {KEY_LOGIN_TIME, TOKEN_TIMEOUT} from '@/config/constant'
 
 const service = axios.create({
   baseURL,
@@ -16,6 +19,13 @@ const service = axios.create({
 service.interceptors.request.use(config => {
   const token = store.getters['user/token']
   if (token) {
+    const now = Date.now()
+    const loginTime = storage.get(KEY_LOGIN_TIME)
+    if (now - loginTime > TOKEN_TIMEOUT) {
+      // 登录超时则执行退出操作
+      store.dispatch('user/logout')
+      return Promise.reject(new Error('token失效'))
+    }
     config.headers.Authorization = `Bear ${token}`
   }
   return config
@@ -34,6 +44,10 @@ service.interceptors.response.use(resp => {
     return Promise.reject(new Error(msg))
   }
 }, e => {
+  // token过期返回401
+  if (e.response && e.response.data && e.response.data.code === 401) {
+    store.dispatch('user/logout')
+  }
   const msg = e.message
   message.error(msg)
   return Promise.reject(new Error(msg))
