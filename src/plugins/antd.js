@@ -2,7 +2,8 @@ import {
   message,
   Form,
   Input,
-  Button
+  Button,
+  Layout
 } from 'ant-design-vue'
 
 export default function installAntd(app) {
@@ -11,4 +12,5 @@ export default function installAntd(app) {
   app.use(Form)
   app.use(Input)
   app.use(Button)
+  app.use(Layout)
 }
