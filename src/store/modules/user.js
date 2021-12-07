@@ -3,17 +3,21 @@ import md5 from 'md5'
 import router from '@/router'
 
 import {CONSTANT} from '@/config'
-import { login } from '@/api/system'
+import { login, getUserInfo } from '@/api/system'
 
 export default {
   namespaced: true,
   state: {
-    token: storage.get(CONSTANT.token)
+    token: storage.get(CONSTANT.token),
+    userInfo: null
   },
   mutations: {
     setToken(state, token) {
       state.token = token
       storage.set(CONSTANT.token, token)
+    },
+    setUserInfo(state, userInfo) {
+      state.userInfo = userInfo
     }
   },
   getters: {
@@ -21,19 +25,28 @@ export default {
   },
   actions: {
     // 用户登录action
-    login(ctx, userInfo) {
+    async login(ctx, userInfo) {
       const {username, password} = userInfo
-      return new Promise((resolve, reject) => {
-          login({
-            username,
-            password: md5(password)
-          }).then(rs => {
-            this.commit('user/setToken', rs.token)
-            router.push('/')
-            resolve(rs)
-          })
-            .catch(e => reject(e))
-      })
+      try {
+        const rs = await login({
+          username,
+          password: md5(password)
+        })
+        this.commit('user/setToken', rs.token)
+        router.push('/')
+        return rs
+      } catch (e) {
+        throw new Error(e.message)
+      }
+    },
+    // 获取用户信息action
+    async getUserInfo() {
+      try {
+        const rs = await getUserInfo()
+        this.commit('user/setUserInfo', rs)
+      } catch (e) {
+        throw new Error(e.message)
+      }
     }
   }
 }

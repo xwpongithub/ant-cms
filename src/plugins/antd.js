@@ -3,7 +3,11 @@ import {
   Form,
   Input,
   Button,
-  Layout
+  Layout,
+  Dropdown,
+  Image,
+  Menu,
+  Divider
 } from 'ant-design-vue'
 
 export default function installAntd(app) {
@@ -13,4 +17,8 @@ export default function installAntd(app) {
   app.use(Input)
   app.use(Button)
   app.use(Layout)
+  app.use(Dropdown)
+  app.use(Image)
+  app.use(Menu)
+  app.use(Divider)
 }

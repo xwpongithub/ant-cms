@@ -9,7 +9,7 @@
 
 <script>
   import {defineProps} from 'vue'
-  import variables from '@/styles/variables.scss'
+  import variables from '@/styles/js-variables.scss'
 
   export default {
     name: 'Sidebar'

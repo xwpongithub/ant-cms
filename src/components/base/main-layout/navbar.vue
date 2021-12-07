@@ -1,10 +1,13 @@
 <template>
-  <a-layout-header style="background: #fff; padding: 0">
+  <a-layout-header>
     <menu-unfold-outlined
       v-if="collapsed"
       @click="handleCollapse(false)"
+      :style="{fontSize:'20px',display: 'block'}"
     />
-    <menu-fold-outlined v-else @click="handleCollapse(true)" />
+    <menu-fold-outlined
+      :style="{fontSize:'20px', display: 'block'}"
+      v-else @click="handleCollapse(true)" />
     <slot></slot>
   </a-layout-header>
 </template>
@@ -31,3 +34,14 @@
     emits('trigger', value)
   }
 </script>
+
+<style lang="scss" scoped>
+  .ant-layout-header {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 0 15px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  }
+</style>
