@@ -1,0 +1,26 @@
+// 左侧菜单
+$menuText: #6fcbd9;
+$menuActiveText: #fff;
+$subMenuActiveText: #f4f4f5;
+
+$menuBg: #304156;
+$menuHover: #263445;
+
+$subMenuBg: #1f2d3d;
+$subMenuHover: #001528;
+
+$barWidth: 210px;
+
+:export {
+  menuText: $menuText;
+  menuActiveText: $menuActiveText;
+  subMenuActiveText: $subMenuActiveText;
+
+  menuBg: $menuBg;
+  menuHover: $menuHover;
+
+  subMenuBg: $subMenuBg;
+  subMenuHover: $subMenuHover;
+
+  barWidth: $barWidth;
+}

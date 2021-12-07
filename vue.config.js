@@ -7,16 +7,16 @@ module.exports = {
         changeOrigin: true
       }
     }
+  },
+  css: {
+    loaderOptions: {
+      sass: {
+        // 全局引入变量和 mixin
+        additionalData: `
+          @import "@/styles/variables.scss";
+          @import "@/styles/mixin.scss";
+        `
+      }
+    }
   }
-  // css: {
-  //   loaderOptions: {
-  //     sass: {
-  //       // 全局引入变量和 mixin
-  //       additionalData: `
-  //         @import "@/assets/scss/variables.scss";
-  //         @import "@/assets/scss/mixin.scss";
-  //       `
-  //     }
-  //   }
-  // }
 }
