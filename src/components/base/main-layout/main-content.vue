@@ -1,6 +1,6 @@
 <template>
   <a-layout-content>
-    <slot></slot>
+    <router-view></router-view>
   </a-layout-content>
 </template>
 

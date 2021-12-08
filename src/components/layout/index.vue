@@ -1,8 +1,10 @@
 <template>
-  <layout class="app-container">
+  <main-layout class="app-container">
     <!--左侧菜单-->
     <template #sidebar>
-      <div class="sidebar-container"></div>
+      <div class="sidebar-container">
+        <sidebar-menu/>
+      </div>
     </template>
     <!--顶部导航栏-->
     <template #navbar>
@@ -40,17 +42,19 @@
     <template #content>
       content
     </template>
-  </layout>
+  </main-layout>
 </template>
 
 <script>
   import {useStore} from 'vuex'
-  import Layout from '@/components/base/main-layout'
+  import MainLayout from '@/components/base/main-layout'
+  import SidebarMenu from '@/components/base/sidebar-menu'
 
   export default {
-    name: 'HomeView',
+    name: 'Layout',
     components: {
-      Layout
+      MainLayout,
+      SidebarMenu
     }
   }
 </script>

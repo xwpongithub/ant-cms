@@ -21,7 +21,7 @@ import Navbar from './navbar'
 import MainContent from './main-content'
 
 export default {
-  name: 'Layout',
+  name: 'MainLayout',
   components: {
     Sidebar,
     Navbar,
