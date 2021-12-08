@@ -111,7 +111,7 @@ const privateRoutes = [
         }
       },
       {
-        path: 'task-list',
+        path: 'test',
         name: 'dmn-test',
         component: () => import(/* webpackChunkName: "dmn-test" */ '@/views/dmn/test'),
         meta: {

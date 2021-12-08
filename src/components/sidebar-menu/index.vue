@@ -1,12 +1,12 @@
 <template>
-  <a-menu mode="inline" :open-keys="openKeys">
+  <a-menu mode="inline" :open-keys="$store.getters.menuOpenKeys" :selected-keys="activeMenu">
      <sidebar-item :key="item.name" v-for="item in menus" :route="item"></sidebar-item>
   </a-menu>
 </template>
 
 <script>
-  import {ref} from 'vue'
-  import {useRouter} from 'vue-router'
+  import {computed} from 'vue'
+  import {useRouter, useRoute} from 'vue-router'
   import SidebarItem from './sidebar-item'
 
   import useSidebarMenu from './use-sidebar-menu'
@@ -21,12 +21,14 @@
 
 <script setup>
 const router = useRouter()
+const route = useRoute()
 
-const openKeys = ref([
-  'workflow',
-  'dmn'
-])
 const {
   menus
 } = useSidebarMenu(router.getRoutes())
+
+const activeMenu = computed(() => {
+  const {name} = route
+  return [name]
+})
 </script>

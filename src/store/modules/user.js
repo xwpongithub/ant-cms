@@ -20,9 +20,6 @@ export default {
       state.userInfo = userInfo
     }
   },
-  getters: {
-    token: state => state.token
-  },
   actions: {
     // 用户登录action
     async login(ctx, userInfo) {

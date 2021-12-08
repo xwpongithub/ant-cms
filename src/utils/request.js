@@ -17,7 +17,7 @@ const service = axios.create({
 })
 
 service.interceptors.request.use(config => {
-  const token = store.getters['user/token']
+  const token = store.state.user.token
   if (token) {
     const now = Date.now()
     const loginTime = storage.get(KEY_LOGIN_TIME)
