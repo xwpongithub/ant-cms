@@ -66,6 +66,7 @@ const onCloseOtherClick = () => {
     margin: 0;
     padding: 7px 16px;
     cursor: pointer;
+    line-height: 1;
     &:hover {
       background: #eee;
     }
