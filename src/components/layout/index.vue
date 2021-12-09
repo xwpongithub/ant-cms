@@ -24,6 +24,9 @@
         <menu-fold-outlined
           :style="{fontSize:'20px', display: 'block'}"
           v-else @click="$store.commit('app/setSidebarCollapsed', true)" />
+
+        <breadcrumb class="breadcrumb-container"/>
+
         <div class="navbar navbar-container">
           <div class="menu-right">
             <a-dropdown class="avatar-container">
@@ -70,13 +73,15 @@
   import {computed} from 'vue'
   import {MenuUnfoldOutlined, MenuFoldOutlined} from '@ant-design/icons-vue'
   import SidebarMenu from '@/components/sidebar-menu'
+  import Breadcrumb from '@/components/breadcrumb'
 
   export default {
     name: 'Layout',
     components: {
       SidebarMenu,
       MenuUnfoldOutlined,
-      MenuFoldOutlined
+      MenuFoldOutlined,
+      Breadcrumb
     }
   }
 </script>
@@ -124,6 +129,9 @@ const computedLogoStyle = computed(() => {
           font-weight: 700;
         }
       }
+    }
+    .breadcrumb-container {
+      margin-left:15px;
     }
     .navbar-container {
       margin-left: auto;

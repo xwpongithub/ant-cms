@@ -7,7 +7,8 @@ import {
   Dropdown,
   Image,
   Menu,
-  Divider
+  Divider,
+  Breadcrumb
 } from 'ant-design-vue'
 
 export default function installAntd(app) {
@@ -21,4 +22,5 @@ export default function installAntd(app) {
   app.use(Image)
   app.use(Menu)
   app.use(Divider)
+  app.use(Breadcrumb)
 }
