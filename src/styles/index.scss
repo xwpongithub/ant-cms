@@ -55,3 +55,13 @@ input:-webkit-autofill:active {
 .ant-divider-horizontal {
   margin: 0!important;
 }
+
+.page-fade-leave-active,
+.page-fade-enter-active {
+  transition: all .3s;
+}
+
+.page-fade-enter-from,
+.page-fade-leave-to{
+  opacity: 0;
+}

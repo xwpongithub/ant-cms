@@ -67,7 +67,13 @@
         <div class="tags-view-wrapper">
            <tags-view/>
         </div>
-        <router-view></router-view>
+        <router-view v-slot="{Component, route}">
+          <transition name="page-fade" mode="out-in">
+            <keep-alive>
+              <component :is="Component" :key="route.name"/>
+            </keep-alive>
+          </transition>
+        </router-view>
       </a-layout-content>
       <a-layout-footer :style="{ textAlign: 'center' }">
         Ant CMS ©2022 Created by Xiao Wenpeng
