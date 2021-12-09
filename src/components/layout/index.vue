@@ -63,6 +63,10 @@
       </a-layout-header>
       <!--内容区-->
       <a-layout-content>
+        <a-divider/>
+        <div class="tags-view-wrapper">
+           <tags-view/>
+        </div>
         <router-view></router-view>
       </a-layout-content>
       <a-layout-footer :style="{ textAlign: 'center' }">
@@ -74,11 +78,14 @@
 
 <script>
   import {useStore} from 'vuex'
-  import {computed} from 'vue'
+  import {useRoute} from 'vue-router'
+  import {computed, watch} from 'vue'
   import {MenuUnfoldOutlined, MenuFoldOutlined} from '@ant-design/icons-vue'
   import SidebarMenu from '@/components/sidebar-menu'
   import Breadcrumb from '@/components/breadcrumb'
   import HeaderSearch from '@/components/header-search'
+  import TagsView from '@/components/tags-view'
+  import {whiteList} from '@/config'
 
   export default {
     name: 'Layout',
@@ -87,12 +94,14 @@
       MenuUnfoldOutlined,
       MenuFoldOutlined,
       Breadcrumb,
-      HeaderSearch
+      HeaderSearch,
+      TagsView
     }
   }
 </script>
 
 <script setup>
+const route = useRoute()
 const store = useStore()
 const logout = () => store.dispatch('user/logout')
 const sidebarCollapsed = computed(() => store.getters.sidebarCollapsed)
@@ -104,6 +113,30 @@ const computedLogoStyle = computed(() => {
     width: '44px',
     height: '44px'
   }
+})
+
+const getTitle = route => {
+  let title
+  if (!route.meta) {
+    const pathArr = route.path.split('/')
+    title = pathArr[pathArr.length - 1]
+  } else {
+    title = route.meta.title
+  }
+  return title
+}
+
+watch(route, to => {
+  if (whiteList.includes(to.path)) {
+    return
+  }
+  const {fullPath, meta, name, params, path, query} = to
+  const tagsViewData = {
+    fullPath, meta, name, params, path, query, title: getTitle(to)
+  }
+  store.commit('app/addTagsView', tagsViewData)
+}, {
+  immediate: true
 })
 </script>
 
@@ -118,7 +151,6 @@ const computedLogoStyle = computed(() => {
       background-color: #fff;
       padding: 0 15px;
       overflow: hidden;
-      box-shadow: 0 1px 4px rgba(0,21,41,.08);
     }
     .sidebar-container {
       .logo-container {
@@ -129,7 +161,6 @@ const computedLogoStyle = computed(() => {
         padding:10px 20px;
         align-items:center;
         background-color: #fff;
-        box-shadow: 0 1px 4px rgba(0,21,41,.4);
         .title {
           padding-left:5px;
           font-weight: 700;

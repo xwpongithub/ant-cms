@@ -1,8 +1,6 @@
 import router from './router'
 import store from './store'
-
-// 白名单路由
-const whiteList = ['/login']
+import {whiteList} from './config'
 
 /**
  * 路由前置守卫
