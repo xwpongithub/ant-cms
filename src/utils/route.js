@@ -1,6 +1,3 @@
-import path from 'path'
-import {computed} from 'vue'
-
 /**
  * 1.如果meta && meta.title && meta.icon ：则显示在 menu 菜单中，其中 title 为显示的内容，icon 为显示的图标
  *   1.1 如果存在 children ：则以 a-sub-menu（子菜单） 展示
@@ -12,18 +9,10 @@ import {computed} from 'vue'
  * 2.不满足条件meta && meta.title && meta.icon的数据不应该存在
  */
 
-export default function useSidebarMenu(routes) {
-  const menus = computed(() => {
-    const filteredRoutes = filterRoutes(routes)
-    return generateMenus(filteredRoutes)
-  })
-  return {
-    menus
-  }
-}
+import path from 'path'
 
 // 处理routes数据，返回对应的menu规则数据
-const generateMenus = (routes, basePath = '') => {
+export const generateMenus = (routes, basePath = '') => {
   const result = []
   // 不满足条件meta && meta.title && meta.icon的数据不应该存在
   routes.forEach(route => {
@@ -48,7 +37,7 @@ const generateMenus = (routes, basePath = '') => {
       }
       const {icon, title} = route.meta
       if (icon && title) {
-         result.push(routeObj)
+        result.push(routeObj)
       }
     }
     // 第二种情况存在children且存在meta
@@ -60,7 +49,7 @@ const generateMenus = (routes, basePath = '') => {
 }
 
 // 去掉脱离层级的路由
-const filterRoutes = routes => {
+export const filterRoutes = routes => {
   // 获取到所有的子路由
   const allChildRoutes = getAllChildRoutes(routes)
   // 对比子路由和一级路由，如果已经存在，则把存在一级根路由下与子路由相同的路由删掉
@@ -70,7 +59,7 @@ const filterRoutes = routes => {
 }
 
 // 获取所有子路由(filterRoutes方法调用)
-const getAllChildRoutes = routes => {
+export const getAllChildRoutes = routes => {
   const result = []
   routes.forEach(route => {
     const {children} = route
@@ -79,6 +68,47 @@ const getAllChildRoutes = routes => {
     }
   })
   return result
+}
+
+/**
+ * 筛选出可供搜索的路由对象
+ * @param routes
+ * @param basePath
+ * @param prefixTitle
+ */
+export const generateSearchRoutes = (routes, basePath = '/', prefixTitle = []) => {
+  // 创建 result 数据
+  let res = []
+  // 循环 routes 路由
+  for (const route of routes) {
+    // 创建包含 path 和 title 的 item
+    const data = {
+      path: path.resolve(basePath, route.path),
+      title: [...prefixTitle]
+    }
+    // 当前存在 meta 时，使用 i18n 解析国际化数据，组合成新的 title 内容
+    // 动态路由不允许被搜索
+    // 匹配动态路由的正则
+    const re = /.*\/:.*/
+    if (
+      route.meta &&
+      route.meta.title &&
+      !re.exec(route.path) &&
+      !res.find(item => item.path === data.path)
+    ) {
+      data.title = [...data.title, route.meta.title]
+      res.push(data)
+    }
+
+    // 存在 children 时，迭代调用
+    if (route.children) {
+      const tempRoutes = generateSearchRoutes(route.children, data.path, data.title)
+      if (tempRoutes.length) {
+        res = [...res, ...tempRoutes]
+      }
+    }
+  }
+  return res
 }
 
 const isNull = obj => !obj || JSON.stringify(obj) === '{}' || JSON.stringify(obj) === '[]'

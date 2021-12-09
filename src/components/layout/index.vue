@@ -25,9 +25,13 @@
           :style="{fontSize:'20px', display: 'block'}"
           v-else @click="$store.commit('app/setSidebarCollapsed', true)" />
 
+        <!--面包屑导航-->
         <breadcrumb class="breadcrumb-container"/>
 
         <div class="navbar navbar-container">
+
+          <header-search/>
+
           <div class="menu-right">
             <a-dropdown class="avatar-container">
               <div class="avatar-wrapper">
@@ -74,6 +78,7 @@
   import {MenuUnfoldOutlined, MenuFoldOutlined} from '@ant-design/icons-vue'
   import SidebarMenu from '@/components/sidebar-menu'
   import Breadcrumb from '@/components/breadcrumb'
+  import HeaderSearch from '@/components/header-search'
 
   export default {
     name: 'Layout',
@@ -81,7 +86,8 @@
       SidebarMenu,
       MenuUnfoldOutlined,
       MenuFoldOutlined,
-      Breadcrumb
+      Breadcrumb,
+      HeaderSearch
     }
   }
 </script>
@@ -134,10 +140,16 @@ const computedLogoStyle = computed(() => {
       margin-left:15px;
     }
     .navbar-container {
-      margin-left: auto;
       height: 100%;
+      display: flex;
+      flex: 1;
+      padding-left:15px;
+      justify-content: flex-end;
+      .header-search {
+        padding-right:15px;
+      }
       .menu-right {
-        width: 100%;
+        width: 100px;
         height: 100%;
         .avatar-container {
           cursor: pointer;

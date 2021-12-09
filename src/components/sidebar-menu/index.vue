@@ -7,9 +7,8 @@
 <script>
   import {computed} from 'vue'
   import {useRouter, useRoute} from 'vue-router'
+  import { filterRoutes, generateMenus } from '@/utils/route'
   import SidebarItem from './sidebar-item'
-
-  import useSidebarMenu from './use-sidebar-menu'
 
   export default {
     name: 'SidebarMenu',
@@ -23,9 +22,10 @@
 const router = useRouter()
 const route = useRoute()
 
-const {
-  menus
-} = useSidebarMenu(router.getRoutes())
+const menus = computed(() => {
+  const filteredRoutes = filterRoutes(router.getRoutes())
+  return generateMenus(filteredRoutes)
+})
 
 const activeMenu = computed(() => {
   const {name} = route

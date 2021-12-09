@@ -13,6 +13,7 @@
     "ant-design-vue": "^3.0.0-alpha.14",
     "axios": "^0.24.0",
     "axios-retry": "^3.2.4",
+    "fuse.js": "^6.4.6",
     "good-storage": "^1.1.1",
     "md5": "^2.3.0",
     "vue": "^3.2.24",
