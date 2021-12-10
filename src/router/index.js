@@ -125,7 +125,10 @@ const privateRoutes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: [...publicRoutes, ...privateRoutes]
+  routes: [...publicRoutes, ...privateRoutes, {
+    path: '/:pathMath(.*)',
+    redirect: '/404'
+  }]
 })
 
 export default router

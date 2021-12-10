@@ -106,12 +106,15 @@
     }
   })
 
-  const handleClose = async () => {
-    searchOptions.value = []
-    keyword.value = undefined
-    showSelect.value = false
+  const handleClose = async (e) => {
     await nextTick()
-    selectRef.value.blur()
+    // 触发click的元素不是搜索框本身的话就关闭搜索框
+    if (!e.target.classList.contains('ant-select-selection-search-input')) {
+      searchOptions.value = []
+      keyword.value = undefined
+      showSelect.value = false
+      selectRef.value.blur()
+    }
   }
 </script>
 

@@ -10,7 +10,8 @@ import {
   Divider,
   Breadcrumb,
   Select,
-  Spin
+  Spin,
+  Result
 } from 'ant-design-vue'
 
 export default function installAntd(app) {
@@ -27,4 +28,5 @@ export default function installAntd(app) {
   app.use(Breadcrumb)
   app.use(Select)
   app.use(Spin)
+  app.use(Result)
 }
