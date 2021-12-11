@@ -19,16 +19,6 @@ const publicRoutes = [
           title: '控制台',
           icon: 'icon-kongzhitai'
         }
-      },
-      {
-        path: '404',
-        name: '404',
-        component: () => import(/* webpackChunkName: "404" */ '@/views/error-page/404')
-      },
-      {
-        path: '401',
-        name: '401',
-        component: () => import(/* webpackChunkName: "401" */ '@/views/error-page/401')
       }
     ]
   },
@@ -36,6 +26,16 @@ const publicRoutes = [
     path: '/login',
     name: 'login',
     component: () => import(/* webpackChunkName: "login" */ '@/views/login')
+  },
+  {
+    path: '/404',
+    name: '404',
+    component: () => import(/* webpackChunkName: "404" */ '@/views/error-page/404')
+  },
+  {
+    path: '/401',
+    name: '401',
+    component: () => import(/* webpackChunkName: "401" */ '@/views/error-page/401')
   }
 ]
 
