@@ -1,4 +1,11 @@
 module.exports = {
+  chainWebpack(config) {
+    let i18nCjsPath = 'vue-i18n/dist/vue-i18n.cjs.js'
+    if (process.env.NODE_ENV === 'production') {
+      i18nCjsPath = './dist/vue-i18n.cjs.prod.js'
+    }
+    config.resolve.alias.set('vue-i18n', i18nCjsPath)
+  },
   devServer: {
     // 配置反向代理
     proxy: {
