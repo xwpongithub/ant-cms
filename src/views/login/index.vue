@@ -24,7 +24,7 @@
 </template>
 
 <script>
-  import {ref, getCurrentInstance, inject} from 'vue'
+  import {ref, inject} from 'vue'
   import {useStore} from 'vuex'
   import {UserOutlined, LockOutlined} from '@ant-design/icons-vue'
 
@@ -40,8 +40,6 @@
 <script setup>
 // 导入vuex
 const store = useStore()
-// 获取当前组件实例
-const instance = getCurrentInstance()
 // 全局提示框
 const $message = inject('$message')
 
@@ -127,18 +125,6 @@ $cursor: #2d3a4b;
       }
     }
   }
-  .tips {
-    font-size: 16px;
-    line-height: 28px;
-    color: #fff;
-    margin-bottom: 10px;
-
-    span {
-      &:first-of-type {
-        margin-right: 16px;
-      }
-    }
-  }
   .title-content {
     position: relative;
     .title {
@@ -147,16 +133,6 @@ $cursor: #2d3a4b;
       margin: 0 auto 40px auto;
       text-align: center;
       font-weight: bold;
-    }
-    :deep(.lang-select) {
-      position: absolute;
-      top: 4px;
-      right: 0;
-      background-color: white;
-      font-size: 22px;
-      padding: 4px;
-      border-radius: 4px;
-      cursor: pointer;
     }
   }
   :deep(.ant-btn) {
