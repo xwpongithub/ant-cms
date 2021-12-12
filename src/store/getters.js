@@ -4,5 +4,6 @@ export default {
   cssVars: () => variables,
   menuOpenKeys: state => state.app.menuOpenKeys,
   sidebarCollapsed: state => state.app.sidebarCollapsed,
-  tagsViewList: state => state.app.tagsViewList
+  tagsViewList: state => state.app.tagsViewList,
+  language: state => state.app.language
 }

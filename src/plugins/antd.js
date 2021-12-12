@@ -11,7 +11,10 @@ import {
   Breadcrumb,
   Select,
   Spin,
-  Result
+  Result,
+  Tooltip,
+  ConfigProvider,
+  Pagination
 } from 'ant-design-vue'
 
 export default function installAntd(app) {
@@ -29,4 +32,7 @@ export default function installAntd(app) {
   app.use(Select)
   app.use(Spin)
   app.use(Result)
+  app.use(Tooltip)
+  app.use(ConfigProvider)
+  app.use(Pagination)
 }

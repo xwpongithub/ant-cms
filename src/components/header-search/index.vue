@@ -106,7 +106,7 @@
     }
   })
 
-  const handleClose = async (e) => {
+  const handleClose = async e => {
     await nextTick()
     // 触发click的元素不是搜索框本身的话就关闭搜索框
     if (!e.target.classList.contains('ant-select-selection-search-input')) {

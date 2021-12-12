@@ -1,12 +1,13 @@
 import storage from 'good-storage'
-import {SESSION_KEY_TAGS_VIEW} from '@/config/constant'
+import {SESSION_KEY_TAGS_VIEW, KEY_LANGUAGE} from '@/config/constant'
 
 export default {
   namespaced: true,
   state: {
     menuOpenKeys: [],
     sidebarCollapsed: false,
-    tagsViewList: storage.session.get(SESSION_KEY_TAGS_VIEW, [])
+    tagsViewList: storage.session.get(SESSION_KEY_TAGS_VIEW, []),
+    language: storage.get(KEY_LANGUAGE, window.navigator.language.replaceAll('-', '_'))
   },
   mutations: {
     setMenuOpenKeys(state, keys) {
@@ -47,6 +48,10 @@ export default {
         tagsViewList.splice(payload.index + 1, tagsViewList.length - payload.index + 1)
       }
       storage.session.set(SESSION_KEY_TAGS_VIEW, state.tagsViewList)
+    },
+    setLanguage(state, language) {
+      state.language = language
+      storage.set(KEY_LANGUAGE, language)
     }
   }
 }

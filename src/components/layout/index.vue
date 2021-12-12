@@ -34,6 +34,8 @@
             <header-search/>
 
             <div class="menu-right">
+              <language-select/>
+
               <a-dropdown class="avatar-container">
                 <div class="avatar-wrapper">
                   <a-image
@@ -91,6 +93,7 @@
   import SidebarMenu from '@/components/sidebar-menu'
   import Breadcrumb from '@/components/breadcrumb'
   import HeaderSearch from '@/components/header-search'
+  import LanguageSelect from '@/components/language-select'
   import TagsView from '@/components/tags-view'
   import {whiteList} from '@/config'
 
@@ -102,7 +105,8 @@
       MenuFoldOutlined,
       Breadcrumb,
       HeaderSearch,
-      TagsView
+      TagsView,
+      LanguageSelect
     }
   }
 </script>
@@ -203,7 +207,7 @@ watch(route, to => {
         padding-right:15px;
       }
       .menu-right {
-        width: 100px;
+        display:flex;
         height: 100%;
         .avatar-container {
           cursor: pointer;

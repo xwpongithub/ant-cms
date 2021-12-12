@@ -3,6 +3,7 @@
     <a-form class="login-form" :rules="loginRules" :model="loginForm" ref="loginFormRef">
       <div class="title-content">
         <h3 class="title">用户登录</h3>
+        <language-select/>
       </div>
       <a-form-item has-feedback ref="usernameRef" name="username">
         <a-input @focus="handleUsernameFocus" :readonly="usernameReadOnlyRef" @blur="handleUsernameBlur" v-model:value="loginForm.username" placeholder="请输入用户名" autocomplete="off" tabindex="1">
@@ -24,15 +25,17 @@
 </template>
 
 <script>
-  import {ref, getCurrentInstance, inject} from 'vue'
+  import {ref, inject} from 'vue'
   import {useStore} from 'vuex'
+  import LanguageSelect from '@/components/language-select'
   import {UserOutlined, LockOutlined} from '@ant-design/icons-vue'
 
   export default {
     name: 'LoginView',
     components: {
       UserOutlined,
-      LockOutlined
+      LockOutlined,
+      LanguageSelect
     }
   }
 </script>
@@ -40,8 +43,6 @@
 <script setup>
 // 导入vuex
 const store = useStore()
-// 获取当前组件实例
-const instance = getCurrentInstance()
 // 全局提示框
 const $message = inject('$message')
 
@@ -127,18 +128,6 @@ $cursor: #2d3a4b;
       }
     }
   }
-  .tips {
-    font-size: 16px;
-    line-height: 28px;
-    color: #fff;
-    margin-bottom: 10px;
-
-    span {
-      &:first-of-type {
-        margin-right: 16px;
-      }
-    }
-  }
   .title-content {
     position: relative;
     .title {
@@ -148,12 +137,12 @@ $cursor: #2d3a4b;
       text-align: center;
       font-weight: bold;
     }
-    :deep(.lang-select) {
+    :deep(.language-select) {
       position: absolute;
       top: 4px;
       right: 0;
-      background-color: white;
-      font-size: 22px;
+      margin-right:0;
+      background-color: #fff;
       padding: 4px;
       border-radius: 4px;
       cursor: pointer;
