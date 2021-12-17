@@ -1,6 +1,6 @@
 import storage from 'good-storage'
 import md5 from 'md5'
-import router from '@/router'
+import router, {resetRouter} from '@/router'
 
 import {KEY_TOKEN, KEY_LOGIN_TIME} from '@/config/constant'
 import { login, getUserInfo } from '@/api/system'
@@ -44,16 +44,19 @@ export default {
       try {
         const rs = await getUserInfo()
         this.commit('user/setUserInfo', rs)
+        return rs
       } catch (e) {
         throw new Error(e.message)
       }
     },
     // 退出登录
     logout() {
+      resetRouter()
       this.commit('user/setToken', null)
       this.commit('user/setUserInfo', null)
+      this.commit('app/removeAllTagsView')
       storage.clear()
-      // todo 清理掉权限相关配置
+      storage.session.clear()
       router.push('/login')
     }
   }

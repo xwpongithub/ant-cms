@@ -2,6 +2,7 @@ import { createStore, createLogger } from 'vuex'
 import user from './modules/user'
 import app from './modules/app'
 import getters from './getters'
+import permission from './modules/permission'
 
 import {debug} from '@/config'
 
@@ -10,7 +11,8 @@ export default createStore({
   plugins: debug ? [createLogger()] : [],
   modules: {
     user,
-    app
+    app,
+    permission
   },
   getters
 })

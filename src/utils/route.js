@@ -18,7 +18,9 @@ export const generateMenus = (routes, basePath = '') => {
   routes.forEach(route => {
     const {meta, children} = route
     // 不存在children && 不存在meta的数据直接return
-    if (isNull(children) && isNull(meta)) return
+    if (isNull(children) && isNull(meta)) {
+      return
+    }
     // 存在children不存在meta,迭代generateMenus
     if (isNull(meta) && !isNull(children)) {
       result.push(...generateMenus(children))
@@ -54,7 +56,7 @@ export const filterRoutes = routes => {
   const allChildRoutes = getAllChildRoutes(routes)
   // 对比子路由和一级路由，如果已经存在，则把存在一级根路由下与子路由相同的路由删掉
   return routes.filter(route =>
-    !allChildRoutes.find(childRoute => childRoute.name === route.name)
+    !allChildRoutes.find(childRoute => childRoute.path === route.path)
   )
 }
 

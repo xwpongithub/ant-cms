@@ -47,6 +47,10 @@ export default {
         tagsViewList.splice(payload.index + 1, tagsViewList.length - payload.index + 1)
       }
       storage.session.set(SESSION_KEY_TAGS_VIEW, state.tagsViewList)
+    },
+    removeAllTagsView(state) {
+      state.tagsViewList.length = 0
+      storage.session.remove(SESSION_KEY_TAGS_VIEW)
     }
   }
 }
