@@ -14,10 +14,18 @@ import {
   Result,
   Tooltip,
   ConfigProvider,
-  Pagination
+  Card,
+  Table,
+  Pagination,
+  Tag,
+  Modal,
+  Checkbox,
+  Col,
+  Row,
+  Tree
 } from 'ant-design-vue'
 
-export default function installAntd(app) {
+export default app => {
   app.config.globalProperties.$message = message
   app.provide('$message', app.config.globalProperties.$message)
   app.use(Form)
@@ -34,5 +42,13 @@ export default function installAntd(app) {
   app.use(Result)
   app.use(Tooltip)
   app.use(ConfigProvider)
+  app.use(Card)
+  app.use(Table)
   app.use(Pagination)
+  app.use(Tag)
+  app.use(Modal)
+  app.use(Checkbox)
+  app.use(Row)
+  app.use(Col)
+  app.use(Tree)
 }

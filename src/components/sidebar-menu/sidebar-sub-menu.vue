@@ -1,12 +1,12 @@
 <template>
 <!--  <router-link :to="route.path">-->
-    <a-sub-menu :key="route.name" @title-click="handleTitleClick(route.path)">
+    <a-sub-menu :key="route.path" @title-click="handleTitleClick(route.path)">
       <template #icon>
         <icon-font :type="route.meta.icon"/>
       </template>
       <template #title>{{route.meta.title}}</template>
 
-      <template v-for="item in route.children" :key="item.name">
+      <template v-for="item in route.children" :key="item.path">
         <template v-if="!item.children.length">
             <a-menu-item :key="item.name" @click="handleMenuItemClick(item.path)">
               <template #icon>

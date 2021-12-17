@@ -10,8 +10,12 @@ import './permission'
 import installAntd from './plugins/antd'
 import installAxios from './plugins/axios'
 
+import installFilter from './filter'
+
 const app = createApp(App)
 app.config.productionTip = false
+
+installFilter(app)
 
 installAntd(app)
 installAxios(app)

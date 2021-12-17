@@ -1,6 +1,6 @@
 <template>
   <a-menu mode="inline" :open-keys="$store.getters.menuOpenKeys" :selected-keys="activeMenu">
-     <sidebar-item :key="item.name" v-for="item in menus" :route="item"></sidebar-item>
+     <sidebar-item :key="item.path" v-for="item in menus" :route="item"></sidebar-item>
   </a-menu>
 </template>
 
@@ -24,6 +24,8 @@ const route = useRoute()
 
 const menus = computed(() => {
   const filteredRoutes = filterRoutes(router.getRoutes())
+  console.log('+++----')
+  console.log(filteredRoutes)
   return generateMenus(filteredRoutes)
 })
 

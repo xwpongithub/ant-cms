@@ -52,6 +52,10 @@ export default {
     setLanguage(state, language) {
       state.language = language
       storage.set(KEY_LANGUAGE, language)
+    },
+    removeAllTagsView(state) {
+      state.tagsViewList.length = 0
+      storage.session.remove(SESSION_KEY_TAGS_VIEW)
     }
   }
 }

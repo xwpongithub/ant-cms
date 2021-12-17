@@ -1,13 +1,13 @@
 <template>
   <template v-if="!route.children.length">
-      <a-menu-item @click="handleClick(route.path)" :key="route.name">
+      <a-menu-item @click="handleClick(route.path)" :key="route.path">
         <template #icon>
           <icon-font :type="route.meta.icon" />
         </template>
         {{route.meta.title}}
       </a-menu-item>
   </template>
-  <sidebar-sub-menu v-else :route="route" :key="route.name"></sidebar-sub-menu>
+  <sidebar-sub-menu v-else :route="route" :key="route.path"></sidebar-sub-menu>
 </template>
 
 <script>
