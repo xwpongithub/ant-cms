@@ -12,6 +12,7 @@ export default {
   children: [
     {
       path: '/user/manage',
+      name: 'userList',
       component: () => import(/* webpackChunkName: "user-manage" */ '@/views/user-manage'),
       meta: {
         title: 'userManage',
