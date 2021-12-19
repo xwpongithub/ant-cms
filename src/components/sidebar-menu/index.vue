@@ -24,8 +24,6 @@ const route = useRoute()
 
 const menus = computed(() => {
   const filteredRoutes = filterRoutes(router.getRoutes())
-  console.log('+++----')
-  console.log(filteredRoutes)
   return generateMenus(filteredRoutes)
 })
 

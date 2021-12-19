@@ -51,7 +51,6 @@ const permissionData = ref([])
 const getPermissionList = async () => {
   const data = await permissionList()
   data.forEach(item => addKeyToEachItem(item))
-  console.log(data)
   permissionData.value = data
 }
 getPermissionList()
