@@ -43,6 +43,8 @@ export default {
     async getUserInfo() {
       try {
         const rs = await getUserInfo()
+        console.log(rs)
+        console.log('userInfo')
         this.commit('user/setUserInfo', rs)
         return rs
       } catch (e) {

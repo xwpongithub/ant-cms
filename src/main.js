@@ -9,6 +9,7 @@ import './permission'
 
 import installAntd from './plugins/antd'
 import installAxios from './plugins/axios'
+import installCustomDirectives from './directives'
 
 import installFilter from './filter'
 
@@ -19,6 +20,7 @@ installFilter(app)
 
 installAntd(app)
 installAxios(app)
+installCustomDirectives(app)
 
 app
 .use(store)

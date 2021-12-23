@@ -16,17 +16,18 @@ router.beforeEach(async (to, from, next) => {
     if (to.path === '/login') {
       next('/')
     } else {
-      if (to.redirectedFrom) {
-        next()
-      } else {
+      if (!store.state.user.userInfo) {
         // 获取用户信息(每次进入页面时都重新获取最新用户信息)
         const {permission} = await store.dispatch('user/getUserInfo')
         // 处理用户权限
-        const filterRoutes = await store.dispatch('permission/filterRoutes', permission.menus)
+        const filterRoutes = await store.dispatch(
+          'permission/filterRoutes',
+          permission.menus)
         // 循环添加对应动态路由
         filterRoutes.forEach(item => router.addRoute(item))
-        next(to.path)
+        return next(to.path)
       }
+      next()
     }
   } else {
     // 用户未登录，只允许进入login

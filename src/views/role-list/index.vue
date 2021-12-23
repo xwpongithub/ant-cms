@@ -9,7 +9,7 @@
         style="width:100%">
         <template #bodyCell="{ column, record }">
           <template v-if="column.key === 'action'">
-            <div class="actions">
+            <div class="actions" v-permission="['distributePermission']">
               <a-button type="primary" @click="distPerms(record)">分配权限</a-button>
             </div>
           </template>
