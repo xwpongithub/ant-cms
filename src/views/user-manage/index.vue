@@ -1,7 +1,7 @@
 <template>
   <div class="user-manage-container">
     <a-card hoverable class="header">
-      <a-button type="primary">excel导入</a-button>
+      <a-button type="primary" v-permission="['importUser']">excel导入</a-button>
       <a-button>excel导出</a-button>
     </a-card>
     <a-card class="body">
@@ -33,8 +33,8 @@
           <template v-if="column.key === 'action'">
             <div class="actions">
               <a-button type="primary">查看</a-button>
-              <a-button @click="showRoleList(record)">角色</a-button>
-              <a-button type="ghost">删除</a-button>
+              <a-button @click="showRoleList(record)" v-permission="['distributeRole']">角色</a-button>
+              <a-button type="ghost" v-permission="['removeUser']">删除</a-button>
             </div>
           </template>
         </template>
