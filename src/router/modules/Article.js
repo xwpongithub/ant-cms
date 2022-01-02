@@ -12,7 +12,6 @@ export default {
   children: [
     {
       path: '/article/ranking',
-      name: 'rankingList',
       component: () => import(/* webpackChunkName: "article-create" */ '@/views/article-ranking'),
       meta: {
         title: 'articleRanking',
@@ -21,7 +20,6 @@ export default {
     },
     {
       path: '/article/:id',
-      name: 'articleDetail',
       component: () => import(/* webpackChunkName: "article-detail" */ '@/views/article-detail'),
       meta: {
         title: 'articleDetail'

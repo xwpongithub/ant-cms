@@ -12,7 +12,6 @@ export default {
   children: [
     {
       path: '/article/create',
-      name: 'articleCreate',
       component: () => import(/* webpackChunkName: "article-create" */ '@/views/article-create'),
       meta: {
         title: 'articleCreate',
@@ -21,7 +20,6 @@ export default {
     },
     {
       path: '/article/editor/:id',
-      name: 'articleEditor',
       component: () => import(/* webpackChunkName: "article-editor" */ '@/views/article-create'),
       meta: {
         title: 'articleEditor'
